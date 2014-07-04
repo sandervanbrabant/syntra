@@ -13,6 +13,8 @@
         </Grid.RowDefinitions>
         <ComboBox Name="choices" Loaded="choices_Loaded"/>
         <Button Name="btn" Click="btn_Click" Content="Voer actie uit" HorizontalAlignment="Center" Grid.Column="1"/>
-        <TextBlock Name="output" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBlock Name="output" HorizontalAlignment="Center"/>
+        </ScrollViewer>
     </Grid>
 </Window>
