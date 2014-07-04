@@ -4,6 +4,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -13,7 +14,9 @@
         </Grid.RowDefinitions>
         <ComboBox Name="choices" Loaded="choices_Loaded"/>
         <Button Name="btn" Click="btn_Click" Content="Voer actie uit" HorizontalAlignment="Center" Grid.Column="1"/>
-        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2">
+        <CheckBox Name="fake" IsChecked="True" Grid.Column="2" Content="Apiary" HorizontalAlignment="Center"
+                  Checked="fake_Checked" Unchecked="fake_Unchecked"/>
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3">
             <TextBlock Name="output" HorizontalAlignment="Center"/>
         </ScrollViewer>
     </Grid>

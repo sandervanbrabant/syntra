@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -9,11 +10,27 @@ namespace Syntra_SVL.Source
 {
     class apiary
     {
-        private readonly string sURL_Apiary = "http://private-825b3-svl.apiary-mock.com/api/";
+        private readonly string[] sURL = new string[2] {
+            "http://private-825b3-svl.apiary-mock.com/api/",
+            "https://coosy-dev.syntravlaanderen.be/api"};
         private readonly string sJSON = "application/json";
+        private short sChioce;
 
         public apiary()
         {
+            sChioce = 0;
+        }
+
+        public void setChoice(bool bCheck)
+        {
+            if (bCheck)
+            {
+                sChioce = 0;
+            }
+            else
+            {
+                sChioce = 1;
+            }
         }
 
         public string requestApiary(string[] sData)
@@ -30,7 +47,12 @@ namespace Syntra_SVL.Source
 
         private string requestFromApiary(string sData, string sPath, string sMethod)
         {
-            var request = System.Net.WebRequest.Create(sURL_Apiary + sPath) as System.Net.HttpWebRequest;
+            if (sChioce == 1)
+            {
+                ServicePointManager.ServerCertificateValidationCallback =
+                new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
+            }
+            var request = System.Net.WebRequest.Create(sURL[sChioce] + sPath) as System.Net.HttpWebRequest;
             request.KeepAlive = true;
             request.Method = sMethod;
             request.ContentType = sJSON;
@@ -46,6 +68,11 @@ namespace Syntra_SVL.Source
                 }
             }
             return responseContent;
+        }
+
+        private bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
         }
     }
 }

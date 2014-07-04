@@ -32,7 +32,7 @@ namespace Syntra_SVL
             dData = new Data();
         }
 
-        private async void btn_Click(object sender, RoutedEventArgs e)
+        private void btn_Click(object sender, RoutedEventArgs e)
         {
             if (choices.SelectedIndex == 0)
             {
@@ -67,6 +67,16 @@ namespace Syntra_SVL
         {
             choices.ItemsSource = sListApiary.ToList<string>();
             choices.SelectedIndex = 0;
+        }
+
+        private void fake_Checked(object sender, RoutedEventArgs e)
+        {
+            aServer.setChoice(true);
+        }
+
+        private void fake_Unchecked(object sender, RoutedEventArgs e)
+        {
+            aServer.setChoice(false);
         }
     }
 }
