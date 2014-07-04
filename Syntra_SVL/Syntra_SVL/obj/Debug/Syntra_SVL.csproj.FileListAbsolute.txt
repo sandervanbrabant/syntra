@@ -1,0 +1,15 @@
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\bin\Debug\Syntra_SVL.exe.config
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\bin\Debug\Syntra_SVL.exe
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\bin\Debug\Syntra_SVL.pdb
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\bin\Debug\Newtonsoft.Json.dll
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\bin\Debug\Newtonsoft.Json.xml
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\MainWindow.baml
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\MainWindow.g.cs
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\App.g.cs
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\Syntra_SVL_MarkupCompile.cache
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\Syntra_SVL.g.resources
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\Syntra_SVL.Properties.Resources.resources
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\Syntra_SVL.csproj.GenerateResource.Cache
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\Syntra_SVL.exe
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\Syntra_SVL.pdb
+c:\users\sander\documents\visual studio 2013\Projects\Syntra_SVL\Syntra_SVL\obj\Debug\Syntra_SVL.csprojResolveAssemblyReference.cache
