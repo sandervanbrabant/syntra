@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Syntra_SVL.Source.Aanvragen;
+using Syntra_SVL.Source.Personen;
+using Syntra_SVL.Source.Contactgegevens;
 using Newtonsoft.Json;
 
 namespace Syntra_SVL.Source
@@ -75,6 +77,48 @@ namespace Syntra_SVL.Source
                     a5.is_ingetrokken = true;
                     return new string[3] {"{\"aanvragen\":" + JsonConvert.SerializeObject(a5) + "}",
                         "aanvragen/1?versie=2", "PUT"};
+                case 5:
+                    PersoonNew b1 = new PersoonNew();
+                    Persoon b1p = new Persoon();
+                    b1p.externe_referentie = "1000003";
+                    b1p.rrn = "8525654";
+                    b1p.familienaam = "Daiso";
+                    b1p.voornaam = "Wim";
+                    b1p.geboortedatum = "2000-02-02";
+                    b1p.geboorteland = "BE";
+                    b1p.geboorteplaats = "runkst";
+                    b1p.geslacht = "M";
+                    b1p.straatnaam = "bosstraat";
+                    b1p.huisnummer = "15";
+                    b1p.bus = "1";
+                    b1p.postcode = "2850";
+                    b1p.gemeente = "boom";
+                    b1p.land = "BE";
+                    b1p.nationaliteit = "BE";
+                    b1p.thuistaal_id = "364";
+                    b1p.thuistaal = "nederlands";
+                    b1p.hoofdberoep = "bediende";
+                    b1p.wil_zelfstandige_worden = "false";
+                    b1p.behaalde_bedrijfsbeheer = "true";
+                    b1p.beroepskennis = "boekhouder";
+                    b1p.diploma_buitenland = "bussiness";
+                    b1p.hoogste_opleidingsniveau_id = "144";
+                    b1p.sociaal_status_id = "123";
+                    b1p.sociaal_statuut = "A";
+                    ContactZonderLink b1c1 = new ContactZonderLink();
+                    b1c1.contact_type = "gsm";
+                    b1c1.waarde = "0444/444444";
+                    b1c1.externe_referentie = "12121";
+                    ContactZonderLink b1c2 = new ContactZonderLink();
+                    b1c2.contact_type = "email";
+                    b1c2.waarde = "me@me.be";
+                    b1c2.externe_referentie = "12121";
+                    ContactAlsLink b1cl = new ContactAlsLink();
+                    b1cl.contactgegevens = new ContactZonderLink[2] { b1c1, b1c2 };
+                    b1.personen = new Persoon[1] { b1p };
+                    b1.linked = b1cl;
+                    return new string[3] { JsonConvert.SerializeObject(b1),
+                        "personen/", "POST"};
             }
             return null;
         }

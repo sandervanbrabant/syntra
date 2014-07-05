@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <ComboBox Name="choices" Loaded="choices_Loaded"/>
         <Button Name="btn" Click="btn_Click" Content="Voer actie uit" HorizontalAlignment="Center" Grid.Column="1"/>
-        <CheckBox Name="fake" IsChecked="True" Grid.Column="2" Content="Apiary" HorizontalAlignment="Center"
+        <CheckBox Name="fake" Grid.Column="2" Content="Apiary" HorizontalAlignment="Center"
                   Checked="fake_Checked" Unchecked="fake_Unchecked"/>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3">
             <TextBlock Name="output" HorizontalAlignment="Center"/>

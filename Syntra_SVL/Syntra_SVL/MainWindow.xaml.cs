@@ -21,15 +21,16 @@ namespace Syntra_SVL
     {
         private apiary aServer;
         private Data dData;
-        private readonly string[] sListApiary = new string[6] {"All",
+        private readonly string[] sListApiary = new string[7] {"All",
             "Registreer een aanvraag", "Registreer een aanvraag met issues", "Wijzig een aanvraag",
-            "Registreer een aanvraag 2", "Wijzig aanvragen collection 2"};
+            "Registreer een aanvraag 2", "Wijzig aanvragen collection 2", "Registreer een persoon"};
 
         public MainWindow()
         {
             InitializeComponent();
             aServer = new apiary();
             dData = new Data();
+            fake.IsChecked = true;
         }
 
         private void btn_Click(object sender, RoutedEventArgs e)

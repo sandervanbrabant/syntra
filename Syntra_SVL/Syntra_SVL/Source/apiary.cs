@@ -47,11 +47,7 @@ namespace Syntra_SVL.Source
 
         private string requestFromApiary(string sData, string sPath, string sMethod)
         {
-            if (sChioce == 1)
-            {
-                ServicePointManager.ServerCertificateValidationCallback =
-                new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
-            }
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             var request = System.Net.WebRequest.Create(sURL[sChioce] + sPath) as System.Net.HttpWebRequest;
             request.KeepAlive = true;
             request.Method = sMethod;
@@ -60,6 +56,7 @@ namespace Syntra_SVL.Source
             request.ContentLength = byteArray.Length;
             using (var writer = request.GetRequestStream()) { writer.Write(byteArray, 0, byteArray.Length); }
             string responseContent = null;
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             using (var response = request.GetResponse() as System.Net.HttpWebResponse)
             {
                 using (var reader = new System.IO.StreamReader(response.GetResponseStream()))
@@ -68,11 +65,6 @@ namespace Syntra_SVL.Source
                 }
             }
             return responseContent;
-        }
-
-        private bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
-        {
-            return true;
         }
     }
 }
