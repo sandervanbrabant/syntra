@@ -65,8 +65,13 @@
     <Compile Include="Source\Bedrijven\Bedrijf.cs" />
     <Compile Include="Source\Bedrijven\BedrijfMetIssues.cs" />
     <Compile Include="Source\Contactgegevens\ContactAlsLink.cs" />
+    <Compile Include="Source\Contactgegevens\ContactMetLink.cs" />
     <Compile Include="Source\Contactgegevens\ContactZonderLink.cs" />
+    <Compile Include="Source\Contactgegevens\Link.cs" />
     <Compile Include="Source\Data.cs" />
+    <Compile Include="Source\Inschrijvingen\Inschrijving.cs" />
+    <Compile Include="Source\Inschrijvingen\InschrijvingWijzig.cs" />
+    <Compile Include="Source\Inschrijvingen\Link.cs" />
     <Compile Include="Source\Personen\Persoon.cs" />
     <Compile Include="Source\Personen\PersoonNew.cs" />
     <Compile Include="Source\Personen\PersoonWijzig.cs" />

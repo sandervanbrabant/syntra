@@ -51,6 +51,10 @@ namespace Syntra_SVL.Source
             var request = System.Net.WebRequest.Create(sURL[sChioce] + sPath) as System.Net.HttpWebRequest;
             request.KeepAlive = true;
             request.Method = sMethod;
+            if (sChioce == 1)
+            {
+                //request.Credentials = new NetworkCredential("API_CENTRUM_TOKEN", "SVL_Sander");
+            }
             if (sMethod.Equals(sGET))
             {
                 request.ContentLength = 0;

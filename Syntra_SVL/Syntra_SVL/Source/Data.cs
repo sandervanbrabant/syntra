@@ -7,6 +7,7 @@ using Syntra_SVL.Source.Aanvragen;
 using Syntra_SVL.Source.Personen;
 using Syntra_SVL.Source.Contactgegevens;
 using Syntra_SVL.Source.Bedrijven;
+using Syntra_SVL.Source.Inschrijvingen;
 using Newtonsoft.Json;
 
 namespace Syntra_SVL.Source
@@ -217,6 +218,53 @@ namespace Syntra_SVL.Source
                         "bedrijven/1", "PUT"};
                 case 14:
                     return new string[3] { "", "bedrijven/1", "DELETE" };
+                case 15:
+                    ContactMetLink d1 = new ContactMetLink();
+                    d1.externe_referentie = "123";
+                    d1.contact_type = "gsm";
+                    d1.waarde = "0444/444444";
+                    Contactgegevens.Link d1l = new Contactgegevens.Link();
+                    d1l.persoon = "17";
+                    d1.links = d1l;
+                    return new string[3] { "{\"contactgegevens\":[" + JsonConvert.SerializeObject(d1) + "]}",
+                        "contactgegevens/", "POST" };
+                case 16:
+                    ContactZonderLink d2 = new ContactZonderLink();
+                    d2.externe_referentie = "123";
+                    d2.contact_type = "gsm";
+                    d2.waarde = "0444/444444";
+                    return new string[3] { "{\"contactgegevens\":[" + JsonConvert.SerializeObject(d2) + "]}",
+                        "contactgegevens/1", "PUT" };
+                case 17:
+                    return new string[3] { "", "contactgegevens/1", "DELETE" };
+                case 18:
+                    Inschrijving e1 = new Inschrijving();
+                    e1.externe_referentie = "2014/2015|5000|10000";
+                    e1.inschrijvingsdatum = "2014-06-02";
+                    e1.uitschrijvingsdatum = "215-06-03";
+                    e1.stage_overeenkomst = "false";
+                    e1.leersecretaris_code = "011";
+                    e1.contract_nummer = "123";
+                    e1.opleiding_in_eigen_naam = "false";
+                    e1.betaald_met_opleidingscheques = "false";
+                    e1.educatief_verlof = "false";
+                    e1.motivatie_bijberoep = "kok";
+                    e1.request_hash = "hfjslvsh";
+                    e1.identity_hash = "ljdgsmfhgfj";
+                    Inschrijvingen.Link e1l = new Inschrijvingen.Link();
+                    e1l.aanvraag = "123";
+                    e1l.cursist = "1";
+                    e1l.bedrijf = "20";
+                    e1.links = e1l;
+                    return new string[3]{"{\"inschrijvingen\":[" + JsonConvert.SerializeObject(e1) + "]}",
+                        "inschrijvingen/", "POST"};
+                case 19:
+                    InschrijvingWijzig e2 = new InschrijvingWijzig();
+                    e2.uitschrijvingsdatum = "2014-06-02";
+                    return new string[3] {"{\"inschrijvingen\":[" + JsonConvert.SerializeObject(e2) + "]}",
+                        "inschrijvingen/1", "PUT"};
+                case 20:
+                    return new string[3] {"", "inschrijvingen/1", "DELETE"};
             }
             return null;
         }
