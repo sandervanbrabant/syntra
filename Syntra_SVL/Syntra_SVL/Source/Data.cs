@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Syntra_SVL.Source.Aanvragen;
 using Syntra_SVL.Source.Personen;
 using Syntra_SVL.Source.Contactgegevens;
+using Syntra_SVL.Source.Bedrijven;
 using Newtonsoft.Json;
 
 namespace Syntra_SVL.Source
@@ -119,6 +120,103 @@ namespace Syntra_SVL.Source
                     b1.linked = b1cl;
                     return new string[3] { JsonConvert.SerializeObject(b1),
                         "personen/", "POST"};
+                case 6:
+                    Persoon b2p = new Persoon();
+                    b2p.externe_referentie = "1000003";
+                    b2p.rrn = "8525654";
+                    b2p.familienaam = "Daiso";
+                    b2p.voornaam = "Wim";
+                    b2p.geboortedatum = "2000-02-02";
+                    b2p.geboorteland = "BE";
+                    b2p.geboorteplaats = "runkst";
+                    b2p.geslacht = "M";
+                    b2p.straatnaam = "bosstraat";
+                    b2p.huisnummer = "15";
+                    b2p.bus = "1";
+                    b2p.postcode = "2850";
+                    b2p.gemeente = "boom";
+                    b2p.land = "BE";
+                    b2p.nationaliteit = "BE";
+                    b2p.thuistaal_id = "364";
+                    b2p.thuistaal = "nederlands";
+                    b2p.hoofdberoep = "bediende";
+                    b2p.wil_zelfstandige_worden = "N";
+                    b2p.behaalde_bedrijfsbeheer = "N";
+                    b2p.beroepskennis = "";
+                    b2p.diploma_buitenland = "";
+                    b2p.hoogste_opleidingsniveau_id = "144";
+                    b2p.sociaal_status_id = "";
+                    b2p.sociaal_statuut = "";
+                    return new string[3] { "{\"personen\":[" + JsonConvert.SerializeObject(new Persoon[1] {b2p}) + "]}",
+                        "personen/?correct=false", "POST"};
+                case 7:
+                    PersoonWijzig b3 = new PersoonWijzig();
+                    b3.straatnaam = "veldstraat";
+                    b3.huisnummer = "1";
+                    b3.postcode = "3500";
+                    b3.gemeente = "hasselt";
+                    return new string[3] { "{\"personen\":" + JsonConvert.SerializeObject(b3) + "}",
+                        "personen/1", "PUT"};
+                case 8:
+                    return new string[3] { "", "personen/1", "GET"};
+                case 9:
+                    return new string[3] { "", "personen/1", "DELETE"};
+                case 10:
+                    return new string[3] { "",   "personen/zoek?externe_referentie=4|12345", "GET"};
+                case 11:
+                    BedrifNew c1 = new BedrifNew();
+                    Bedrijf c1b = new Bedrijf();
+                    c1b.externe_referentie = "23666";
+                    c1b.ondernemersnummer = "BE013456789";
+                    c1b.naam = "abc bvba";
+                    c1b.straatnaam = "hier";
+                    c1b.huisnummer = "1";
+                    c1b.bus = "1";
+                    c1b.postcode = "3000";
+                    c1b.gemeente = "leuven";
+                    c1b.land = "BE";
+                    c1b.juridisch_statuut_id = "80";
+                    c1b.bedrijfs_grootte_id = "73";
+                    c1b.bedrijfs_sector = "idustrie";
+                    c1b.bedrijfs_activiteit = "papier";
+                    ContactZonderLink c1c1 = new ContactZonderLink();
+                    c1c1.contact_type = "gsm";
+                    c1c1.waarde = "0444/444444";
+                    c1c1.externe_referentie = "12121";
+                    ContactZonderLink c1c2 = new ContactZonderLink();
+                    c1c2.contact_type = "email";
+                    c1c2.waarde = "me@me.be";
+                    c1c2.externe_referentie = "12121";
+                    ContactAlsLink c1cl = new ContactAlsLink();
+                    c1cl.contactgegevens = new ContactZonderLink[2] { c1c1, c1c2 };
+                    c1.bedrijven = new Bedrijf[1] { c1b };
+                    c1.linked = c1cl;
+                    return new string[3]{JsonConvert.SerializeObject(c1),
+                        "bedrijven/", "POST"};
+                case 12:
+                    BedrijfMetIssues c2 = new BedrijfMetIssues();
+                    c2.externe_referentie = "23666";
+                    c2.ondernemersnummer = "BE013456789";
+                    c2.straatnaam = "hier";
+                    c2.huisnummer = "1";
+                    c2.bus = "1";
+                    c2.postcode = "3000";
+                    c2.gemeente = "leuven";
+                    c2.land = "BE";
+                    c2.juridisch_statuut_id = "80";
+                    c2.bedrijfs_grootte_id = "73";
+                    c2.bedrijfs_sector = "idustrie";
+                    c2.bedrijfs_activiteit = "papier";
+                    return new string[3]{ "{\"bedrijven\":[" + JsonConvert.SerializeObject(c2) + "]}",
+                        "bedrijven/?correct=false", "POST"};
+                case 13:
+                    BedrijfAdres c3 = new BedrijfAdres();
+                    c3.straatnaam = "veldstraat";
+                    c3.huisnummer = "50";
+                    return new string[3]{"{\"bedrijven\":[" + JsonConvert.SerializeObject(c3) + "]}",
+                        "bedrijven/1", "PUT"};
+                case 14:
+                    return new string[3] { "", "bedrijven/1", "DELETE" };
             }
             return null;
         }

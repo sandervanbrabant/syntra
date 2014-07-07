@@ -60,11 +60,16 @@
     <Compile Include="Source\Aanvragen\AanvraagMetIssues.cs" />
     <Compile Include="Source\Aanvragen\AanvraagWijziging.cs" />
     <Compile Include="Source\apiary.cs" />
+    <Compile Include="Source\Bedrijven\BedrifNew.cs" />
+    <Compile Include="Source\Bedrijven\BedrijfAdres.cs" />
+    <Compile Include="Source\Bedrijven\Bedrijf.cs" />
+    <Compile Include="Source\Bedrijven\BedrijfMetIssues.cs" />
     <Compile Include="Source\Contactgegevens\ContactAlsLink.cs" />
     <Compile Include="Source\Contactgegevens\ContactZonderLink.cs" />
     <Compile Include="Source\Data.cs" />
     <Compile Include="Source\Personen\Persoon.cs" />
     <Compile Include="Source\Personen\PersoonNew.cs" />
+    <Compile Include="Source\Personen\PersoonWijzig.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
