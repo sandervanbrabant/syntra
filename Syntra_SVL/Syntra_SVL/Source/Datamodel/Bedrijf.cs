@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Syntra_SVL.Source.Bedrijven
+namespace Syntra_SVL.Source.Datamodel
 {
-    class BedrijfMetIssues
+    class Bedrijf
     {
-        public BedrijfMetIssues()
+        public Bedrijf()
         {
         }
 
         public string externe_referentie { get; set; }
         public string ondernemersnummer { get; set; }
+        public string naam { get; set; }
         public string straatnaam { get; set; }
         public string huisnummer { get; set; }
         public string bus { get; set; }

@@ -21,14 +21,18 @@ namespace Syntra_SVL
     {
         private apiary aServer;
         private Data dData;
-        private readonly string[] sListApiary = new string[22] {"All",
+        private readonly string[] sListApiary = new string[34] {"All",
             "Registreer een aanvraag", "Registreer een aanvraag met issues", "Wijzig een aanvraag",
             "Registreer een aanvraag 2", "Wijzig aanvragen collection 2", "Registreer een persoon",
             "Registreer een persoon met issues", "Wijzig een persoon", "Opvragen van een persoon",
             "Verwijder een persoon", "Zoek een persoon op externe referentie", "Registreer een bedrijf",
             "Registreer een bedrijf met issues", "Wijzig een bedrijf", "Verwijder een bedijf",
             "Registreer een contactgegeven", "Wijzig een contactgegeven", "Verwijder een contactgegeven",
-            "Registreer een inschrijving", "Wijzig een inschrijving", "Verwijder een inschrijving"};
+            "Registreer een inschrijving", "Wijzig een inschrijving", "Verwijder een inschrijving",
+            "Registreer een lesmoment", "Wijzig een lesmoment", "Registreer een prestatie",
+            "Wijzig een prestatie", "Verwijder een prestatie", "Registreer een jurylid",
+            "Wijzig een jurylid", "Verwijder een jurylid", "Registreer een aanwezigheid",
+            "Wijzig een aanwezigheid", "Verwijder een aanwezigheid", "Zoek een moduleversie"};
 
         public MainWindow()
         {

@@ -53,7 +53,9 @@ namespace Syntra_SVL.Source
             request.Method = sMethod;
             if (sChioce == 1)
             {
-                //request.Credentials = new NetworkCredential("API_CENTRUM_TOKEN", "SVL_Sander");
+                request.Accept = "application/vnd.coosy+json";
+                request.ContentType = "application/json; charset=utf-8";
+                request.Headers.Add("API_CENTRUM_TOKEN:SVL_Sander");
             }
             if (sMethod.Equals(sGET))
             {

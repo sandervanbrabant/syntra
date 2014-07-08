@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Syntra_SVL.Source.Aanvragen;
-using Syntra_SVL.Source.Personen;
-using Syntra_SVL.Source.Contactgegevens;
-using Syntra_SVL.Source.Bedrijven;
-using Syntra_SVL.Source.Inschrijvingen;
+using Syntra_SVL.Source.Datamodel;
 using Newtonsoft.Json;
 
 namespace Syntra_SVL.Source
@@ -39,7 +35,7 @@ namespace Syntra_SVL.Source
                     return new string[3] {"{\"payload\":" + JsonConvert.SerializeObject(a1) + "}",
                         "aanvragen/", "POST"};
                 case 1:
-                    AanvraagMetIssues a2 = new AanvraagMetIssues();
+                    Aanvraag a2 = new Aanvraag();
                     a2.externe_referentie = "654321";
                     a2.cursus_jaar = "2013/2014";
                     a2.cursus_verantwoordelijke = "Geert";
@@ -54,7 +50,7 @@ namespace Syntra_SVL.Source
                     return new string[3] {"{\"payload\":" + JsonConvert.SerializeObject(a2) + "}",
                         "aanvragen/?correct=false", "POST"};
                 case 2:
-                    AanvraagWijziging a3 = new AanvraagWijziging();
+                    Aanvraag a3 = new Aanvraag();
                     a3.is_ingetrokken = true;
                     return new string[3] {"{\"payload\":" + JsonConvert.SerializeObject(a3) + "}",
                         "aanvragen/1", "PUT"};
@@ -75,51 +71,47 @@ namespace Syntra_SVL.Source
                     return new string[3] {"{\"aanvragen\":" + JsonConvert.SerializeObject(a4) + "}",
                         "aanvragen/?versie=2", "POST"};
                 case 4:
-                    AanvraagWijziging a5 = new AanvraagWijziging();
+                    Aanvraag a5 = new Aanvraag();
                     a5.is_ingetrokken = true;
                     return new string[3] {"{\"aanvragen\":" + JsonConvert.SerializeObject(a5) + "}",
                         "aanvragen/1?versie=2", "PUT"};
                 case 5:
-                    PersoonNew b1 = new PersoonNew();
-                    Persoon b1p = new Persoon();
-                    b1p.externe_referentie = "1000003";
-                    b1p.rrn = "8525654";
-                    b1p.familienaam = "Daiso";
-                    b1p.voornaam = "Wim";
-                    b1p.geboortedatum = "2000-02-02";
-                    b1p.geboorteland = "BE";
-                    b1p.geboorteplaats = "runkst";
-                    b1p.geslacht = "M";
-                    b1p.straatnaam = "bosstraat";
-                    b1p.huisnummer = "15";
-                    b1p.bus = "1";
-                    b1p.postcode = "2850";
-                    b1p.gemeente = "boom";
-                    b1p.land = "BE";
-                    b1p.nationaliteit = "BE";
-                    b1p.thuistaal_id = "364";
-                    b1p.thuistaal = "nederlands";
-                    b1p.hoofdberoep = "bediende";
-                    b1p.wil_zelfstandige_worden = "false";
-                    b1p.behaalde_bedrijfsbeheer = "true";
-                    b1p.beroepskennis = "boekhouder";
-                    b1p.diploma_buitenland = "bussiness";
-                    b1p.hoogste_opleidingsniveau_id = "144";
-                    b1p.sociaal_status_id = "123";
-                    b1p.sociaal_statuut = "A";
-                    ContactZonderLink b1c1 = new ContactZonderLink();
+                    Persoon b1 = new Persoon();
+                    b1.externe_referentie = "1000003";
+                    b1.rrn = "8525654";
+                    b1.familienaam = "Daiso";
+                    b1.voornaam = "Wim";
+                    b1.geboortedatum = "2000-02-02";
+                    b1.geboorteland = "BE";
+                    b1.geboorteplaats = "runkst";
+                    b1.geslacht = "M";
+                    b1.straatnaam = "bosstraat";
+                    b1.huisnummer = "15";
+                    b1.bus = "1";
+                    b1.postcode = "2850";
+                    b1.gemeente = "boom";
+                    b1.land = "BE";
+                    b1.nationaliteit = "BE";
+                    b1.thuistaal_id = "364";
+                    b1.thuistaal = "nederlands";
+                    b1.hoofdberoep = "bediende";
+                    b1.wil_zelfstandige_worden = "false";
+                    b1.behaalde_bedrijfsbeheer = "true";
+                    b1.beroepskennis = "boekhouder";
+                    b1.diploma_buitenland = "bussiness";
+                    b1.hoogste_opleidingsniveau_id = "144";
+                    b1.sociaal_status_id = "123";
+                    b1.sociaal_statuut = "A";
+                    Contact b1c1 = new Contact();
                     b1c1.contact_type = "gsm";
                     b1c1.waarde = "0444/444444";
                     b1c1.externe_referentie = "12121";
-                    ContactZonderLink b1c2 = new ContactZonderLink();
+                    Contact b1c2 = new Contact();
                     b1c2.contact_type = "email";
                     b1c2.waarde = "me@me.be";
                     b1c2.externe_referentie = "12121";
-                    ContactAlsLink b1cl = new ContactAlsLink();
-                    b1cl.contactgegevens = new ContactZonderLink[2] { b1c1, b1c2 };
-                    b1.personen = new Persoon[1] { b1p };
-                    b1.linked = b1cl;
-                    return new string[3] { JsonConvert.SerializeObject(b1),
+                    return new string[3] { "{\"personen\":[" + JsonConvert.SerializeObject(b1) +
+                        "],\"linked\":{\"contactgegevens\":" + JsonConvert.SerializeObject(new Contact[2]{b1c1, b1c2}) + "}}",
                         "personen/", "POST"};
                 case 6:
                     Persoon b2p = new Persoon();
@@ -151,7 +143,7 @@ namespace Syntra_SVL.Source
                     return new string[3] { "{\"personen\":[" + JsonConvert.SerializeObject(new Persoon[1] {b2p}) + "]}",
                         "personen/?correct=false", "POST"};
                 case 7:
-                    PersoonWijzig b3 = new PersoonWijzig();
+                    Persoon b3 = new Persoon();
                     b3.straatnaam = "veldstraat";
                     b3.huisnummer = "1";
                     b3.postcode = "3500";
@@ -165,37 +157,33 @@ namespace Syntra_SVL.Source
                 case 10:
                     return new string[3] { "",   "personen/zoek?externe_referentie=4|12345", "GET"};
                 case 11:
-                    BedrifNew c1 = new BedrifNew();
-                    Bedrijf c1b = new Bedrijf();
-                    c1b.externe_referentie = "23666";
-                    c1b.ondernemersnummer = "BE013456789";
-                    c1b.naam = "abc bvba";
-                    c1b.straatnaam = "hier";
-                    c1b.huisnummer = "1";
-                    c1b.bus = "1";
-                    c1b.postcode = "3000";
-                    c1b.gemeente = "leuven";
-                    c1b.land = "BE";
-                    c1b.juridisch_statuut_id = "80";
-                    c1b.bedrijfs_grootte_id = "73";
-                    c1b.bedrijfs_sector = "idustrie";
-                    c1b.bedrijfs_activiteit = "papier";
-                    ContactZonderLink c1c1 = new ContactZonderLink();
+                    Bedrijf c1 = new Bedrijf();
+                    c1.externe_referentie = "23666";
+                    c1.ondernemersnummer = "BE013456789";
+                    c1.naam = "abc bvba";
+                    c1.straatnaam = "hier";
+                    c1.huisnummer = "1";
+                    c1.bus = "1";
+                    c1.postcode = "3000";
+                    c1.gemeente = "leuven";
+                    c1.land = "BE";
+                    c1.juridisch_statuut_id = "80";
+                    c1.bedrijfs_grootte_id = "73";
+                    c1.bedrijfs_sector = "idustrie";
+                    c1.bedrijfs_activiteit = "papier";
+                    Contact c1c1 = new Contact();
                     c1c1.contact_type = "gsm";
                     c1c1.waarde = "0444/444444";
                     c1c1.externe_referentie = "12121";
-                    ContactZonderLink c1c2 = new ContactZonderLink();
+                    Contact c1c2 = new Contact();
                     c1c2.contact_type = "email";
                     c1c2.waarde = "me@me.be";
                     c1c2.externe_referentie = "12121";
-                    ContactAlsLink c1cl = new ContactAlsLink();
-                    c1cl.contactgegevens = new ContactZonderLink[2] { c1c1, c1c2 };
-                    c1.bedrijven = new Bedrijf[1] { c1b };
-                    c1.linked = c1cl;
-                    return new string[3]{JsonConvert.SerializeObject(c1),
+                    return new string[3]{"{\"bedrijven\":[" + JsonConvert.SerializeObject(c1) +
+                        "],\"linked\":{\"contactgegevens\":" + JsonConvert.SerializeObject(new Contact[2]{c1c1, c1c2}) + "}}",
                         "bedrijven/", "POST"};
                 case 12:
-                    BedrijfMetIssues c2 = new BedrijfMetIssues();
+                    Bedrijf c2 = new Bedrijf();
                     c2.externe_referentie = "23666";
                     c2.ondernemersnummer = "BE013456789";
                     c2.straatnaam = "hier";
@@ -211,7 +199,7 @@ namespace Syntra_SVL.Source
                     return new string[3]{ "{\"bedrijven\":[" + JsonConvert.SerializeObject(c2) + "]}",
                         "bedrijven/?correct=false", "POST"};
                 case 13:
-                    BedrijfAdres c3 = new BedrijfAdres();
+                    Bedrijf c3 = new Bedrijf();
                     c3.straatnaam = "veldstraat";
                     c3.huisnummer = "50";
                     return new string[3]{"{\"bedrijven\":[" + JsonConvert.SerializeObject(c3) + "]}",
@@ -219,17 +207,16 @@ namespace Syntra_SVL.Source
                 case 14:
                     return new string[3] { "", "bedrijven/1", "DELETE" };
                 case 15:
-                    ContactMetLink d1 = new ContactMetLink();
+                    Contact d1 = new Contact();
                     d1.externe_referentie = "123";
                     d1.contact_type = "gsm";
                     d1.waarde = "0444/444444";
-                    Contactgegevens.Link d1l = new Contactgegevens.Link();
-                    d1l.persoon = "17";
-                    d1.links = d1l;
+                    d1.links = new Link();
+                    d1.links.persoon = "17";
                     return new string[3] { "{\"contactgegevens\":[" + JsonConvert.SerializeObject(d1) + "]}",
                         "contactgegevens/", "POST" };
                 case 16:
-                    ContactZonderLink d2 = new ContactZonderLink();
+                    Contact d2 = new Contact();
                     d2.externe_referentie = "123";
                     d2.contact_type = "gsm";
                     d2.waarde = "0444/444444";
@@ -251,20 +238,105 @@ namespace Syntra_SVL.Source
                     e1.motivatie_bijberoep = "kok";
                     e1.request_hash = "hfjslvsh";
                     e1.identity_hash = "ljdgsmfhgfj";
-                    Inschrijvingen.Link e1l = new Inschrijvingen.Link();
-                    e1l.aanvraag = "123";
-                    e1l.cursist = "1";
-                    e1l.bedrijf = "20";
-                    e1.links = e1l;
+                    e1.links = new Link();
+                    e1.links.aanvraag = "123";
+                    e1.links.cursist = "1";
+                    e1.links.bedrijf = "20";
                     return new string[3]{"{\"inschrijvingen\":[" + JsonConvert.SerializeObject(e1) + "]}",
                         "inschrijvingen/", "POST"};
                 case 19:
-                    InschrijvingWijzig e2 = new InschrijvingWijzig();
+                    Inschrijving e2 = new Inschrijving();
                     e2.uitschrijvingsdatum = "2014-06-02";
                     return new string[3] {"{\"inschrijvingen\":[" + JsonConvert.SerializeObject(e2) + "]}",
                         "inschrijvingen/1", "PUT"};
                 case 20:
                     return new string[3] {"", "inschrijvingen/1", "DELETE"};
+                case 21:
+                    Lesmoment f1 = new Lesmoment();
+                    f1.links = new Link();
+                    f1.links.aanvraag = "6498";
+                    f1.links.module_vak = "1202";
+                    f1.externe_referentie = "2013/2014|5555|2014-09-01|14:30";
+                    f1.lesdag = "2014-09-01";
+                    f1.startuur = "14:30";
+                    f1.er_is_een_examen = "false";
+                    f1.aantal_uren_lesmoment = "6";
+                    f1.vak_omschrijving = "engels";
+                    f1.lokaal = "A1";
+                    f1.onderwerp = "vocabulary";
+                    Prestatie f1p = new Prestatie();
+                    f1p.externe_referentie_lesgever = "12";
+                    f1p.werknemersnummer_lesgever = "500";
+                    f1p.dimona_contract = "12";
+                    f1p.aantal_uren_prestatie = "4";
+                    f1p.externe_referentie = "2013/2014|5555|2014-09-01|14:30|12";
+                    Jurylid f1j = new Jurylid();
+                    f1j.voornaam = "Jan";
+                    f1j.familienaam = "Bos";
+                    f1j.externe_referentie = "2014|A12345|Jan|Bos";
+                    LesmomentLink f1link = new LesmomentLink();
+                    f1link.prestaties = new Prestatie[1] { f1p };
+                    f1link.juryleden = new Jurylid[1] { f1j };
+                    return new string[3]{"{\"lesmomenten\":[" + JsonConvert.SerializeObject(f1) + "],\"linked\":" +
+                        JsonConvert.SerializeObject(f1link) + "}", "lesmomenten/", "POST"};
+                case 22:
+                    Lesmoment f2 = new Lesmoment();
+                    f2.aantal_lesuren = "2";
+                    return new string[3]{"{\"lesmomente,\":[" + JsonConvert.SerializeObject(f2) + "]}",
+                        "lesmomenten/1", "PUT"};
+                case 23:
+                    Prestatie g1 = new Prestatie();
+                    g1.externe_referentie_lesgever = "12";
+                    g1.werknemersnummer_lesgever = "500";
+                    g1.dimona_contract = "122";
+                    g1.aantal_uren_prestatie = "4";
+                    g1.externe_referentie = "2013/2014|5555|2014-09-01|14:30|12";
+                    g1.links = new Link();
+                    g1.links.lesmoment = "3444";
+                    return new string[3]{"{\"prestaties\":[" + JsonConvert.SerializeObject(g1) + "]}",
+                        "prestaties/", "POST"};
+                case 24:
+                    Prestatie g2 = new Prestatie();
+                    g2.aantal_lesuren = "8";
+                    return new string[3]{"{\"prestaties\":[" + JsonConvert.SerializeObject(g2) + "]}",
+                        "prestaties/1", "PUT"};
+                case 25:
+                    return new string[3] { "", "prestaties/1", "DELETE" };
+                case 26:
+                    Jurylid h1 = new Jurylid();
+                    h1.voornaam = "Donald";
+                    h1.familienaam = "Duck";
+                    h1.externe_referentie = "2014|A12345|12";
+                    h1.links = new Link();
+                    h1.links.lesmoment = "3444";
+                    return new string[3]{"{\"juryleden\":[" + JsonConvert.SerializeObject(h1) + "]}",
+                        "juryleden/", "POST"};
+                case 27:
+                    Jurylid h2 = new Jurylid();
+                    h2.voornaam = "Mickey";
+                    h2.familienaam = "Mouse";
+                    return new string[3]{"{\"juryleden\":[" + JsonConvert.SerializeObject(h2) + "]}",
+                        "juryleden/1", "PUT"};
+                case 28:
+                    return new string[3] { "", "juryleden/1", "DELETE" };
+                case 29:
+                    Aanwezigheden i1 = new Aanwezigheden();
+                    i1.externe_referentie = "2013/2014|5555|2014-09-01|14:30|100003";
+                    i1.aanwezigheids_code = "A";
+                    i1.links = new Link();
+                    i1.links.lesmoment = "3444";
+                    i1.links.persoon = "1";
+                    return new string[3]{"{\"aanwezigheden\":[" + JsonConvert.SerializeObject(i1) + "]}",
+                        "aanwezigheden/", "POST"};
+                case 30:
+                    Aanwezigheden i2 = new Aanwezigheden();
+                    i2.aanwezigheids_code = "X";
+                    return new string[3]{"{\"aanwezigheden\":[" + JsonConvert.SerializeObject(i2) + "]}",
+                        "aanwezigheden/1", "PUT"};
+                case 31:
+                    return new string[3]{"", "aanwezigheden/1", "DELETE"};
+                case 32:
+                    return new string[3] { "", "module_versies/zoek?nummer=1074201&versie=0", "GET" };
             }
             return null;
         }

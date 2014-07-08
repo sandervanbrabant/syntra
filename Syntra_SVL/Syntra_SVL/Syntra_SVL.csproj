@@ -56,25 +56,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Source\Aanvragen\Aanvraag.cs" />
-    <Compile Include="Source\Aanvragen\AanvraagMetIssues.cs" />
-    <Compile Include="Source\Aanvragen\AanvraagWijziging.cs" />
+    <Compile Include="Source\Datamodel\Aanvraag.cs" />
     <Compile Include="Source\apiary.cs" />
-    <Compile Include="Source\Bedrijven\BedrifNew.cs" />
-    <Compile Include="Source\Bedrijven\BedrijfAdres.cs" />
-    <Compile Include="Source\Bedrijven\Bedrijf.cs" />
-    <Compile Include="Source\Bedrijven\BedrijfMetIssues.cs" />
-    <Compile Include="Source\Contactgegevens\ContactAlsLink.cs" />
-    <Compile Include="Source\Contactgegevens\ContactMetLink.cs" />
-    <Compile Include="Source\Contactgegevens\ContactZonderLink.cs" />
-    <Compile Include="Source\Contactgegevens\Link.cs" />
+    <Compile Include="Source\Datamodel\Aanwezigheden.cs" />
+    <Compile Include="Source\Datamodel\Bedrijf.cs" />
+    <Compile Include="Source\Datamodel\Contact.cs" />
     <Compile Include="Source\Data.cs" />
-    <Compile Include="Source\Inschrijvingen\Inschrijving.cs" />
-    <Compile Include="Source\Inschrijvingen\InschrijvingWijzig.cs" />
-    <Compile Include="Source\Inschrijvingen\Link.cs" />
-    <Compile Include="Source\Personen\Persoon.cs" />
-    <Compile Include="Source\Personen\PersoonNew.cs" />
-    <Compile Include="Source\Personen\PersoonWijzig.cs" />
+    <Compile Include="Source\Datamodel\Link.cs" />
+    <Compile Include="Source\Datamodel\Inschrijving.cs" />
+    <Compile Include="Source\Datamodel\Jurylid.cs" />
+    <Compile Include="Source\Datamodel\Lesmoment.cs" />
+    <Compile Include="Source\Datamodel\LesmomentLink.cs" />
+    <Compile Include="Source\Datamodel\Prestatie.cs" />
+    <Compile Include="Source\Datamodel\Persoon.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

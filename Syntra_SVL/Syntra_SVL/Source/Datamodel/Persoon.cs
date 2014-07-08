@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Syntra_SVL.Source.Contactgegevens;
 
-namespace Syntra_SVL.Source.Personen
+namespace Syntra_SVL.Source.Datamodel
 {
     class Persoon
     {

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Syntra_SVL.Source.Contactgegevens
+namespace Syntra_SVL.Source.Datamodel
 {
-    class ContactMetLink
+    class Jurylid
     {
-        public ContactMetLink()
+        public Jurylid()
         {
         }
 
-        public string contact_type { get; set; }
-        public string waarde { get; set; }
+        public string voornaam { get; set; }
+        public string familienaam { get; set; }
         public string externe_referentie { get; set; }
         public Link links { get; set; }
     }

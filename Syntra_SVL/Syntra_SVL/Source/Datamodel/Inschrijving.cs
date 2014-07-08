@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Syntra_SVL.Source.Inschrijvingen
+namespace Syntra_SVL.Source.Datamodel
 {
     class Inschrijving
     {
@@ -22,7 +22,7 @@ namespace Syntra_SVL.Source.Inschrijvingen
         public string betaald_met_opleidingscheques { get; set; }
         public string educatief_verlof { get; set; }
         public string motivatie_bijberoep { get; set; }
-        public Inschrijvingen.Link links { get; set; }
+        public Link links { get; set; }
         public string request_hash { get; set; }
         public string identity_hash { get; set; }
     }
