@@ -21,6 +21,7 @@ namespace Syntra_SVL
     {
         private apiary aServer;
         private Data dData;
+        private Thread tRun;
         private readonly string[] sListApiary = new string[34] {"All",
             "Registreer een aanvraag", "Registreer een aanvraag met issues", "Wijzig een aanvraag",
             "Registreer een aanvraag 2", "Wijzig aanvragen collection 2", "Registreer een persoon",
@@ -46,7 +47,7 @@ namespace Syntra_SVL
         {
             if (choices.SelectedIndex == 0)
             {
-                Thread run = new Thread(() =>
+                tRun = new Thread(() =>
                 {
                     Dispatcher.Invoke(() =>
                     {
@@ -65,11 +66,20 @@ namespace Syntra_SVL
                         output.Text += "End";
                     });
                 });
-                run.Start();
+                tRun.Start();
             }
             else
             {
-                output.Text = aServer.requestApiary(dData.getData(choices.SelectedIndex - 1));
+                tRun = new Thread(() =>
+                {
+                    string sData = sListApiary[choices.SelectedIndex] + "\n\n" +
+                        aServer.requestApiary(dData.getData(choices.SelectedIndex - 1));
+                    Dispatcher.Invoke(() =>
+                    {
+                        output.Text = sData;
+                    });
+                });
+                tRun.Start();
             }
         }
 
@@ -87,6 +97,11 @@ namespace Syntra_SVL
         private void fake_Unchecked(object sender, RoutedEventArgs e)
         {
             aServer.setChoice(false);
+        }
+
+        private override void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            tRun.Abort();
         }
     }
 }

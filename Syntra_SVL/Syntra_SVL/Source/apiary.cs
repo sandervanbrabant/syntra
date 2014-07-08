@@ -12,7 +12,7 @@ namespace Syntra_SVL.Source
     {
         private readonly string[] sURL = new string[2] {
             "http://private-825b3-svl.apiary-mock.com/api/",
-            "https://coosy-dev.syntravlaanderen.be/api"};
+            "https://coosy-dev.syntravlaanderen.be/api/"};
         private readonly string sJSON = "application/json", sGET = "GET";
         private short sChioce;
 
@@ -54,8 +54,12 @@ namespace Syntra_SVL.Source
             if (sChioce == 1)
             {
                 request.Accept = "application/vnd.coosy+json";
-                request.ContentType = "application/json; charset=utf-8";
-                request.Headers.Add("API_CENTRUM_TOKEN:SVL_Sander");
+                //example 1
+                //request.Headers["Authorization"] = "Basic API_CENTRUM_TOKEN:SVL_Sander";
+                //example 2
+                //request.Headers.Add("API_CENTRUM_TOKEN:SVL_Sander");
+                //example 3
+                request.Credentials = new NetworkCredential("API_CENTRUM_TOKEN", "SVL_Sander");
             }
             if (sMethod.Equals(sGET))
             {
