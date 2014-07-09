@@ -39,9 +39,25 @@ namespace Syntra_SVL.Source
             {
                 return requestFromApiary(sData[0], sData[1], sData[2]);
             }
+            catch (WebException e)
+            {
+                string sError = "error\n";
+                using (WebResponse response = e.Response)
+                {
+                    HttpWebResponse httpResponse = (HttpWebResponse)response;
+                    sError += "Error code: " + httpResponse.StatusCode + "\n";
+                    using (System.IO.Stream data = response.GetResponseStream())
+                    using (var reader = new System.IO.StreamReader(data))
+                    {
+                        sError += "\n" + reader.ReadToEnd();
+                    }
+                }
+                return sError;
+            }
             catch (Exception ex)
             {
-                return "error\n\n" + ex.Message;
+                return "error\n\n" + ex.Message + "\n\n" + ex.Source +
+                    "\n\n" + ex.StackTrace;
             }
         }
 
@@ -57,9 +73,9 @@ namespace Syntra_SVL.Source
                 //example 1
                 //request.Headers["Authorization"] = "Basic API_CENTRUM_TOKEN:SVL_Sander";
                 //example 2
-                //request.Headers.Add("API_CENTRUM_TOKEN:SVL_Sander");
+                request.Headers.Add("API_CENTRUM_TOKEN:SVL_Sander");
                 //example 3
-                request.Credentials = new NetworkCredential("API_CENTRUM_TOKEN", "SVL_Sander");
+                //request.Credentials = new NetworkCredential("API_CENTRUM_TOKEN", "SVL_Sander");
             }
             if (sMethod.Equals(sGET))
             {

@@ -40,7 +40,8 @@ namespace Syntra_SVL
             InitializeComponent();
             aServer = new apiary();
             dData = new Data();
-            fake.IsChecked = true;
+            fake.IsChecked = false;
+            aServer.setChoice(false);
         }
 
         private void btn_Click(object sender, RoutedEventArgs e)
@@ -70,10 +71,11 @@ namespace Syntra_SVL
             }
             else
             {
+                int iChoice = choices.SelectedIndex;
                 tRun = new Thread(() =>
                 {
-                    string sData = sListApiary[choices.SelectedIndex] + "\n\n" +
-                        aServer.requestApiary(dData.getData(choices.SelectedIndex - 1));
+                    string sData = sListApiary[iChoice] + "\n\n" +
+                        aServer.requestApiary(dData.getData(iChoice - 1));
                     Dispatcher.Invoke(() =>
                     {
                         output.Text = sData;
@@ -98,10 +100,10 @@ namespace Syntra_SVL
         {
             aServer.setChoice(false);
         }
-
+        /*
         private override void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             tRun.Abort();
-        }
+        }*/
     }
 }
