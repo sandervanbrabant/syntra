@@ -23,3 +23,21 @@ Er zijn nu problemen met registreren van aanvraag/persoon/bedrijf met issues. Ve
 	"adres":{"straatnaam":"straat",
 			"huisnummer":"1"}}}
 De klasse adres (in dit geval) kan meerdere malen herbruikt worden en zorgt voor een betere overzichtelijkheid.
+
+Identicatie en connectie met server is in orde, maar voor sommige requests is er nog een probleem:
+404: (aantal 8/32)
+Verwijder een persoon
+Zoek een persoon op referentie
+Verwijder een bedrijf
+Wijzig een lesmoment
+Registreer een jurylid
+Wijzig een jurylid
+Verwijder een jurylid
+Zoek een module
+500: (aantal 5/32)
+Registreer een aanvraag 2
+Wijzig aanvragen collection 2
+Registreer een bedrijf
+Registreer een lesmoment
+Registreer een aanwezigheid
+Dus 19 werken (geen 404) maar er zijn er die ik nog niet kan testen (geen registratie => niet wijzigen, verwijderen of oproepen).
