@@ -21,19 +21,44 @@ namespace Syntra_SVL.Source.Datamodel
         public string commentaar { get; set; }
         public string is_praktijksplitsing { get; set; }
         public string is_ingetrokken { get; set; }
-        public int extra_kenmerk_id { get; set; }
-        public int doelgroepen_beleid_id { get; set; }
+        public string extra_kenmerk_id { get; set; }
+        public string doelgroepen_beleid_id { get; set; }
 
-        public string getAanvraagJson()
+        public string getJson()
         {
-            string sData = "";
-            
-            return "{\"payload\":{\"externe_referentie\":\"2014/2015|13555\"," + 
-                    "\"start_datum\":\"2014-11-01\",\"cursus_jaar\":\"2014/2015\"," +
-                    "\"cursus_verantwoordelijke\":\"Jan\",\"is_ingetrokken\":\"false\"," +
-                    "\"extra_kenmerk_id\":" + 346 + ",\"doelgroepen_beleid_id\":" + 500 + "," +
-                    "\"locatie\":\"Beenhouwerij Verkest\",\"commentaar\":\"Vegetarische bereidingen\"," +
-                    "\"lesplaats_code\":\"09\",\"module_versie_referentie\":\"423724\",\"is_praktijksplitsing\":\"true\"}}";
+            string sJson = "{";
+            sJson += setJson(externe_referentie, "externe_referentie");
+            sJson += setJson(cursus_jaar, "cursus_jaar");
+            sJson += setJson(lesplaats_code, "lesplaats_code");
+            sJson += setJson(module_versie_referentie, "module_versie_referentie");
+            sJson += setJson(start_datum, "start_datum");
+            sJson += setJson(locatie, "locatie");
+            sJson += setJson(cursus_verantwoordelijke, "cursus_verantwoordelijke");
+            sJson += setJson(commentaar, "commentaar");
+            sJson += setJson(is_ingetrokken, "is_ingetrokken");
+            sJson += setJson(is_praktijksplitsing, "is_praktijksplitsing");
+            sJson += setJson(extra_kenmerk_id, "extra_kenmerk_id");
+            sJson += setJson(doelgroepen_beleid_id, "doelgroepen_beleid_id");
+            if (sJson.Length == 1)
+            {
+                return "{}";
+            }
+            else
+            {
+                return sJson.Substring(0, sJson.Length - 1) + "}";
+            }
+        }
+
+        private string setJson(string atribute, string atributeName)
+        {
+            if (atribute != null)
+            {
+                return "\"" + atributeName + "\":\"" + atribute + "\",";
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

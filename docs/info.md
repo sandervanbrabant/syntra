@@ -41,3 +41,20 @@ Registreer een bedrijf
 Registreer een lesmoment
 Registreer een aanwezigheid
 Dus 19 werken (geen 404) maar er zijn er die ik nog niet kan testen (geen registratie => niet wijzigen, verwijderen of oproepen).
+
+nieuwe update 10/07/2014
+
+404; (aantal 8/32)
+Verwijder een persoon
+Zoek een persoon op referentie
+Verwijder een bedrijf
+Wijzig een lesmoment
+Registreer, wijzig en verwijder een jurylid (X3)
+Zoek een moduleversie
+
+500: (aantal 4/32)
+versie 2 aanvraag (X2)
+registreer een bedrijf
+registree een aanwezigheid
+
+van de 400 zie ik geen fouten meer, enkel dat ze geen correcte coosy-key hebben (foutieve referentie)

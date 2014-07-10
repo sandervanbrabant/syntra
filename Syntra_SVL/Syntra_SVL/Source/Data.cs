@@ -25,35 +25,36 @@ namespace Syntra_SVL.Source
                     a1.cursus_jaar = "2014/2015";
                     a1.cursus_verantwoordelijke = "Geert";
                     a1.is_ingetrokken = "false";
-                    a1.extra_kenmerk_id = 346;
-                    a1.doelgroepen_beleid_id = 500;
+                    a1.extra_kenmerk_id = "346";
+                    a1.doelgroepen_beleid_id = "500";
                     a1.locatie = "thuis";
                     a1.commentaar = "fun";
                     a1.lesplaats_code = "09";
                     a1.module_versie_referentie = "423724";
                     a1.is_praktijksplitsing = "true";
-                    return new string[3] {"{\"payload\":" + JsonConvert.SerializeObject(a1) + "}",
+                    return new string[3] {"{\"payload\":" + a1.getJson() + "}",
                         "aanvragen/", "POST"};
                 case 1:
                     Aanvraag a2 = new Aanvraag();
                     a2.externe_referentie = "654321";
+                    a2.start_datum = "2014-09-02";
                     a2.cursus_jaar = "2014/2015";
                     a2.cursus_verantwoordelijke = "Geert";
                     a2.is_ingetrokken = "false";
-                    a2.extra_kenmerk_id = 346;
-                    a2.doelgroepen_beleid_id = 500;
+                    a2.extra_kenmerk_id = "346";
+                    a2.doelgroepen_beleid_id = "500";
                     a2.locatie = "thuis";
                     a2.commentaar = "fun";
                     a2.lesplaats_code = "09";
-                    a2.module_versie_referentie = "54236";
+                    a2.module_versie_referentie = "423724";
                     a2.is_praktijksplitsing = "true";
-                    return new string[3] {"{\"payload\":" + JsonConvert.SerializeObject(a2) + "}",
+                    return new string[3] {"{\"payload\":" + a2.getJson() + "}",
                         "aanvragen/?correct=false", "POST"};
                 case 2:
                     Aanvraag a3 = new Aanvraag();
                     a3.is_ingetrokken = "true";
-                    return new string[3] {"{\"payload\":" + JsonConvert.SerializeObject(a3) + "}",
-                        "aanvragen/1", "PUT"};
+                    return new string[3] {"{\"payload\":" + a3.getJson() + "}",
+                        "aanvragen/705", "PUT"};
                 case 3:
                     Aanvraag a4 = new Aanvraag();
                     a4.externe_referentie = "2013/2014|45654";
@@ -61,19 +62,19 @@ namespace Syntra_SVL.Source
                     a4.cursus_jaar = "2014/2015";
                     a4.cursus_verantwoordelijke = "Geert";
                     a4.is_ingetrokken = "false";
-                    a4.extra_kenmerk_id = 346;
-                    a4.doelgroepen_beleid_id = 500;
+                    a4.extra_kenmerk_id = "346";
+                    a4.doelgroepen_beleid_id = "500";
                     a4.locatie = "thuis";
                     a4.commentaar = "fun";
                     a4.lesplaats_code = "09";
-                    a4.module_versie_referentie = "54236";
+                    a4.module_versie_referentie = "423724";
                     a4.is_praktijksplitsing = "true";
-                    return new string[3] {"{\"aanvragen\":" + JsonConvert.SerializeObject(a4) + "}",
+                    return new string[3] {"{\"aanvragen\":" + a4.getJson() + "}",
                         "aanvragen/?versie=2", "POST"};
                 case 4:
                     Aanvraag a5 = new Aanvraag();
                     a5.is_ingetrokken = "true";
-                    return new string[3] {"{\"aanvragen\":" + JsonConvert.SerializeObject(a5) + "}",
+                    return new string[3] {"{\"aanvragen\":" + a5.getJson() + "}",
                         "aanvragen/1?versie=2", "PUT"};
                 case 5:
                     Persoon b1 = new Persoon();
@@ -105,13 +106,15 @@ namespace Syntra_SVL.Source
                     Contact b1c1 = new Contact();
                     b1c1.contact_type = "gsm";
                     b1c1.waarde = "0444/444444";
-                    b1c1.externe_referentie = "12121";
+                    b1c1.externe_referentie = "79";
+                    b1c1.links = null;
                     Contact b1c2 = new Contact();
                     b1c2.contact_type = "email";
                     b1c2.waarde = "me@me.be";
-                    b1c2.externe_referentie = "12121";
-                    return new string[3] { "{\"personen\":[" + JsonConvert.SerializeObject(b1) +
-                        "],\"linked\":{\"contactgegevens\":" + JsonConvert.SerializeObject(new Contact[2]{b1c1, b1c2}) + "}}",
+                    b1c2.externe_referentie = "79";
+                    b1c2.links = null;
+                    return new string[3] { "{\"personen\":[" + b1.getJson() +
+                        "],\"linked\":{\"contactgegevens\":[" + b1c1.getJson() + "," + b1c2.getJson() + "]}}",
                         "personen/", "POST"};
                 case 6:
                     Persoon b2p = new Persoon();
@@ -133,14 +136,14 @@ namespace Syntra_SVL.Source
                     b2p.thuistaal_id = "364";
                     b2p.thuistaal = "nederlands";
                     b2p.hoofdberoep = "bediende";
-                    b2p.wil_zelfstandige_worden = "N";
-                    b2p.behaalde_bedrijfsbeheer = "N";
+                    b2p.wil_zelfstandige_worden = "false";
+                    b2p.behaalde_bedrijfsbeheer = "false";
                     b2p.beroepskennis = "";
                     b2p.diploma_buitenland = "";
                     b2p.hoogste_opleidingsniveau_id = "144";
                     b2p.sociaal_status_id = "";
                     b2p.sociaal_statuut = "";
-                    return new string[3] { "{\"personen\":[" + JsonConvert.SerializeObject(new Persoon[1] {b2p}) + "]}",
+                    return new string[3] { "{\"personen\":[" + b2p.getJson() + "]}",
                         "personen/?correct=false", "POST"};
                 case 7:
                     Persoon b3 = new Persoon();
@@ -148,14 +151,14 @@ namespace Syntra_SVL.Source
                     b3.huisnummer = "1";
                     b3.postcode = "3500";
                     b3.gemeente = "hasselt";
-                    return new string[3] { "{\"personen\":" + JsonConvert.SerializeObject(b3) + "}",
-                        "personen/1", "PUT"};
+                    return new string[3] { "{\"personen\":[" + b3.getJson() + "]}",
+                        "personen/77", "PUT"};
                 case 8:
-                    return new string[3] { "", "personen/1", "GET"};
+                    return new string[3] { "", "personen/77", "GET"};
                 case 9:
-                    return new string[3] { "", "personen/1", "DELETE"};
+                    return new string[3] { "", "personen/80", "DELETE"};
                 case 10:
-                    return new string[3] { "",   "personen/zoek?externe_referentie=4|12345", "GET"};
+                    return new string[3] { "",   "personen/zoek?externe_referentie=81", "GET"};
                 case 11:
                     Bedrijf c1 = new Bedrijf();
                     c1.externe_referentie = "23666";
@@ -179,13 +182,14 @@ namespace Syntra_SVL.Source
                     c1c2.contact_type = "email";
                     c1c2.waarde = "me@me.be";
                     c1c2.externe_referentie = "12121";
-                    return new string[3]{"{\"bedrijven\":[" + JsonConvert.SerializeObject(c1) +
-                        "],\"linked\":{\"contactgegevens\":" + JsonConvert.SerializeObject(new Contact[2]{c1c1, c1c2}) + "}}",
+                    return new string[3]{"{\"bedrijven\":[" + c1.getJson() +
+                        "],\"linked\":{\"contactgegevens\":[" + c1c2.getJson() + "," + c1c1.getJson() + "}}",
                         "bedrijven/", "POST"};
                 case 12:
                     Bedrijf c2 = new Bedrijf();
                     c2.externe_referentie = "23666";
                     c2.ondernemersnummer = "BE013456789";
+                    c2.naam = "abcd bvba";
                     c2.straatnaam = "hier";
                     c2.huisnummer = "1";
                     c2.bus = "1";
@@ -196,34 +200,34 @@ namespace Syntra_SVL.Source
                     c2.bedrijfs_grootte_id = "73";
                     c2.bedrijfs_sector = "idustrie";
                     c2.bedrijfs_activiteit = "papier";
-                    return new string[3]{ "{\"bedrijven\":[" + JsonConvert.SerializeObject(c2) + "]}",
+                    return new string[3]{ "{\"bedrijven\":[" + c2.getJson() + "]}",
                         "bedrijven/?correct=false", "POST"};
                 case 13:
                     Bedrijf c3 = new Bedrijf();
                     c3.straatnaam = "veldstraat";
                     c3.huisnummer = "50";
-                    return new string[3]{"{\"bedrijven\":[" + JsonConvert.SerializeObject(c3) + "]}",
-                        "bedrijven/1", "PUT"};
+                    return new string[3]{"{\"bedrijven\":[" + c3.getJson() + "]}",
+                        "bedrijven/9830", "PUT"};
                 case 14:
-                    return new string[3] { "", "bedrijven/1", "DELETE" };
+                    return new string[3] { "", "bedrijven/9830", "DELETE" };
                 case 15:
                     Contact d1 = new Contact();
                     d1.externe_referentie = "123";
                     d1.contact_type = "gsm";
                     d1.waarde = "0444/444444";
                     d1.links = new Link();
-                    d1.links.persoon = "17";
-                    return new string[3] { "{\"contactgegevens\":[" + JsonConvert.SerializeObject(d1) + "]}",
+                    d1.links.persoon = "81";
+                    return new string[3] { "{\"contactgegevens\":[" + d1.getJson() + "]}",
                         "contactgegevens/", "POST" };
                 case 16:
                     Contact d2 = new Contact();
                     d2.externe_referentie = "123";
                     d2.contact_type = "gsm";
                     d2.waarde = "0444/444444";
-                    return new string[3] { "{\"contactgegevens\":[" + JsonConvert.SerializeObject(d2) + "]}",
+                    return new string[3] { "{\"contactgegevens\":[" + d2.getJson() + "]}",
                         "contactgegevens/1", "PUT" };
                 case 17:
-                    return new string[3] { "", "contactgegevens/1", "DELETE" };
+                    return new string[3] { "", "contactgegevens/123", "DELETE" };
                 case 18:
                     Inschrijving e1 = new Inschrijving();
                     e1.externe_referentie = "2014/2015|5000|10000";
@@ -242,12 +246,12 @@ namespace Syntra_SVL.Source
                     e1.links.aanvraag = "123";
                     e1.links.cursist = "1";
                     e1.links.bedrijf = "20";
-                    return new string[3]{"{\"inschrijvingen\":[" + JsonConvert.SerializeObject(e1) + "]}",
+                    return new string[3]{"{\"inschrijvingen\":[" + e1.getJson() + "]}",
                         "inschrijvingen/", "POST"};
                 case 19:
                     Inschrijving e2 = new Inschrijving();
                     e2.uitschrijvingsdatum = "2014-06-02";
-                    return new string[3] {"{\"inschrijvingen\":[" + JsonConvert.SerializeObject(e2) + "]}",
+                    return new string[3] {"{\"inschrijvingen\":[" + e2.getJson() + "]}",
                         "inschrijvingen/1", "PUT"};
                 case 20:
                     return new string[3] {"", "inschrijvingen/1", "DELETE"};
@@ -277,12 +281,12 @@ namespace Syntra_SVL.Source
                     LesmomentLink f1link = new LesmomentLink();
                     f1link.prestaties = new Prestatie[1] { f1p };
                     f1link.juryleden = new Jurylid[1] { f1j };
-                    return new string[3]{"{\"lesmomenten\":[" + JsonConvert.SerializeObject(f1) + "],\"linked\":" +
-                        JsonConvert.SerializeObject(f1link) + "}", "lesmomenten/", "POST"};
+                    return new string[3]{"{\"lesmomenten\":[" + f1.getJson() + "]," +
+                        f1link.getJson() + "}", "lesmomenten/", "POST"};
                 case 22:
                     Lesmoment f2 = new Lesmoment();
                     f2.aantal_lesuren = "2";
-                    return new string[3]{"{\"lesmomente,\":[" + JsonConvert.SerializeObject(f2) + "]}",
+                    return new string[3]{"{\"lesmomente,\":[" + f2.getJson() + "]}",
                         "lesmomenten/1", "PUT"};
                 case 23:
                     Prestatie g1 = new Prestatie();
@@ -293,12 +297,12 @@ namespace Syntra_SVL.Source
                     g1.externe_referentie = "2013/2014|5555|2014-09-01|14:30|12";
                     g1.links = new Link();
                     g1.links.lesmoment = "3444";
-                    return new string[3]{"{\"prestaties\":[" + JsonConvert.SerializeObject(g1) + "]}",
+                    return new string[3]{"{\"prestaties\":[" + g1.getJson() + "]}",
                         "prestaties/", "POST"};
                 case 24:
                     Prestatie g2 = new Prestatie();
                     g2.aantal_lesuren = "8";
-                    return new string[3]{"{\"prestaties\":[" + JsonConvert.SerializeObject(g2) + "]}",
+                    return new string[3]{"{\"prestaties\":[" + g2.getJson() + "]}",
                         "prestaties/1", "PUT"};
                 case 25:
                     return new string[3] { "", "prestaties/1", "DELETE" };
@@ -309,13 +313,13 @@ namespace Syntra_SVL.Source
                     h1.externe_referentie = "2014|A12345|12";
                     h1.links = new Link();
                     h1.links.lesmoment = "3444";
-                    return new string[3]{"{\"juryleden\":[" + JsonConvert.SerializeObject(h1) + "]}",
+                    return new string[3]{"{\"juryleden\":[" + h1.getJson() + "]}",
                         "juryleden/", "POST"};
                 case 27:
                     Jurylid h2 = new Jurylid();
                     h2.voornaam = "Mickey";
                     h2.familienaam = "Mouse";
-                    return new string[3]{"{\"juryleden\":[" + JsonConvert.SerializeObject(h2) + "]}",
+                    return new string[3]{"{\"juryleden\":[" + h2.getJson() + "]}",
                         "juryleden/1", "PUT"};
                 case 28:
                     return new string[3] { "", "juryleden/1", "DELETE" };
@@ -326,12 +330,12 @@ namespace Syntra_SVL.Source
                     i1.links = new Link();
                     i1.links.lesmoment = "3444";
                     i1.links.persoon = "1";
-                    return new string[3]{"{\"aanwezigheden\":[" + JsonConvert.SerializeObject(i1) + "]}",
+                    return new string[3]{"{\"aanwezigheden\":[" + i1.getJson() + "]}",
                         "aanwezigheden/", "POST"};
                 case 30:
                     Aanwezigheden i2 = new Aanwezigheden();
                     i2.aanwezigheids_code = "X";
-                    return new string[3]{"{\"aanwezigheden\":[" + JsonConvert.SerializeObject(i2) + "]}",
+                    return new string[3]{"{\"aanwezigheden\":[" + i2.getJson() + "]}",
                         "aanwezigheden/1", "PUT"};
                 case 31:
                     return new string[3]{"", "aanwezigheden/1", "DELETE"};

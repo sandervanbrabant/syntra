@@ -41,18 +41,25 @@ namespace Syntra_SVL.Source
             }
             catch (WebException e)
             {
-                string sError = "error\n";
-                using (WebResponse response = e.Response)
+                try
                 {
-                    HttpWebResponse httpResponse = (HttpWebResponse)response;
-                    sError += "Error code: " + httpResponse.StatusCode + "\n";
-                    using (System.IO.Stream data = response.GetResponseStream())
-                    using (var reader = new System.IO.StreamReader(data))
+                    string sError = "error\n";
+                    using (WebResponse response = e.Response)
                     {
-                        sError += "\n" + reader.ReadToEnd();
+                        HttpWebResponse httpResponse = (HttpWebResponse)response;
+                        sError += "Error code: " + httpResponse.StatusCode + "\n";
+                        using (System.IO.Stream data = response.GetResponseStream())
+                        using (var reader = new System.IO.StreamReader(data))
+                        {
+                            sError += "\n" + reader.ReadToEnd();
+                        }
                     }
+                    return sError;
                 }
-                return sError;
+                catch (Exception exc)
+                {
+                    return "Failled";
+                }
             }
             catch (Exception ex)
             {

@@ -21,7 +21,44 @@ namespace Syntra_SVL.Source.Datamodel
         public string lokaal { get; set; }
         public string onderwerp { get; set; }
         public Link links { get; set; }
-
         public string aantal_lesuren { get; set; }
+
+        public string getJson()
+        {
+            string sJson = "{";
+            sJson += setJson(externe_referentie, "externe_referentie");
+            sJson += setJson(lesdag, "lesdag");
+            sJson += setJson(startuur, "startuur");
+            sJson += setJson(er_is_een_examen, "er_is_een_examen");
+            sJson += setJson(aantal_uren_lesmoment, "aantal_uren_lesmoment");
+            sJson += setJson(vak_omschrijving, "vak_omschrijving");
+            sJson += setJson(lokaal, "lokaal");
+            sJson += setJson(onderwerp, "onderwerp");
+            sJson += setJson(aantal_lesuren, "aantal_lesuren");
+            if (links != null)
+            {
+                sJson += "\"links\":" + links.getJson() + ",";
+            }
+            if (sJson.Length == 1)
+            {
+                return "{}";
+            }
+            else
+            {
+                return sJson.Substring(0, sJson.Length - 1) + "}";
+            }
+        }
+
+        private string setJson(string atribute, string atributeName)
+        {
+            if (atribute != null)
+            {
+                return "\"" + atributeName + "\":\"" + atribute + "\",";
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

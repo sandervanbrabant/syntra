@@ -25,5 +25,46 @@ namespace Syntra_SVL.Source.Datamodel
         public Link links { get; set; }
         public string request_hash { get; set; }
         public string identity_hash { get; set; }
+
+        public string getJson()
+        {
+            string sJson = "{";
+            sJson += setJson(externe_referentie, "externe_referentie");
+            sJson += setJson(inschrijvingsdatum, "inschrijvingsdatum");
+            sJson += setJson(uitschrijvingsdatum, "uitschrijvingsdatum");
+            sJson += setJson(stage_overeenkomst, "stage_overeenkomst");
+            sJson += setJson(leersecretaris_code, "leersecretaris_code");
+            sJson += setJson(contract_nummer, "contract_nummer");
+            sJson += setJson(opleiding_in_eigen_naam, "opleiding_in_eigen_naam");
+            sJson += setJson(betaald_met_opleidingscheques, "betaald_met_opleidingscheques");
+            sJson += setJson(educatief_verlof, "educatief_verlof");
+            sJson += setJson(motivatie_bijberoep, "motivatie_bijberoep");
+            sJson += setJson(request_hash, "request_hash");
+            sJson += setJson(identity_hash, "identity_hash");
+            if (links != null)
+            {
+                sJson += "\"links\":" + links.getJson() + ",";
+            }
+            if (sJson.Length == 1)
+            {
+                return "{}";
+            }
+            else
+            {
+                return sJson.Substring(0, sJson.Length - 1) + "}";
+            }
+        }
+
+        private string setJson(string atribute, string atributeName)
+        {
+            if (atribute != null)
+            {
+                return "\"" + atributeName + "\":\"" + atribute + "\",";
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }
